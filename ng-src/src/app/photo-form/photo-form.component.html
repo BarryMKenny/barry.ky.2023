@@ -1,0 +1,28 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #photoForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" [(ngModel)]="photo.filename"
+               class="form-control"
+               id="name"
+               name="name"
+               placeholder="Enter your filename"
+               required #name="ngModel">
+      </div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Filename is required</div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" [(ngModel)]="photo.text"
+               class="form-control"
+               id="email"
+               name="email"
+               placeholder="Enter your photo text"
+               required #email="ngModel">
+        <div [hidden]="!email.pristine" class="alert alert-danger">Text is required</div>
+      </div>
+      <button type="submit" [disabled]="!photoForm.form.valid"
+              class="btn btn-info">Submit</button>
+    </form>
+  </div>
+</div>
