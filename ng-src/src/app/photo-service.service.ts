@@ -11,7 +11,7 @@ export class PhotoService {
   private photosUrl: string;
 
   constructor(private http: HttpClient) {
-    this.photosUrl = 'http://localhost:8080/photos';
+    this.photosUrl = 'https://barry.ky/photos';
   }
 
   public findAll(): Observable<Photo[]> {

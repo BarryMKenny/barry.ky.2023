@@ -4,8 +4,10 @@ import { PhotoListComponent } from "./photo-list/photo-list.component";
 import { PhotoFormComponent } from "./photo-form/photo-form.component";
 
 const routes: Routes = [
+  { path: '', component: PhotoListComponent },
   { path: 'photos', component: PhotoListComponent },
-  { path: 'addphoto', component: PhotoFormComponent }
+  { path: 'addphoto', component: PhotoFormComponent },
+  { path: '*', component: PhotoFormComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

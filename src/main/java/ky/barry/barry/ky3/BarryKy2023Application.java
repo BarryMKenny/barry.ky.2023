@@ -26,5 +26,4 @@ public class BarryKy2023Application {
 			photoRepository.findAll().forEach(System.out::println);
 		};
 	}
-
 }

@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @Slf4j
-@CrossOrigin(origins = "http://localhost:4200")
 public class PhotoController {
 
     private final PhotoRepository photoRepository;
