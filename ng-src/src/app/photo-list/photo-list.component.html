@@ -1,20 +1,11 @@
-<div class="card my-5">
-  <div class="card-body">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let photo of photos">
-        <td>{{ photo.id }}</td>
-        <td>{{ photo.filename}}</td>
-        <td><a href="mailto:{{ photo.text }}">{{ photo.text }}</a></td>
-      </tr>
-      </tbody>
-    </table>
+<main>
+  <div id="fullscreenDiv" #fullscreenDiv class="fullscreen"></div>
+  <div>
+    <div class="gallery" id="gallery">
+      <div *ngFor="let photo of photos; let i=index" class="gallery-item" tabindex="0" >
+        <img src="data:image/png;base64,{{photo.bytes}}" class="gallery-image" alt="" maximize #maximize="maximize" (click)='maximize.toggle()' id="image{{i}}">
+      </div>
+    </div>
+  <div #loader class="loader"></div>
   </div>
-</div>
+</main>

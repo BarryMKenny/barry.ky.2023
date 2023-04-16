@@ -6,7 +6,7 @@ import {PhotoService} from "../photo-service.service";
 @Component({
   selector: 'app-photo-form',
   templateUrl: './photo-form.component.html',
-  styleUrls: ['./photo-form.component.css']
+  styleUrls: ['./photo-form.component.scss']
 })
 export class PhotoFormComponent {
   photo: Photo;

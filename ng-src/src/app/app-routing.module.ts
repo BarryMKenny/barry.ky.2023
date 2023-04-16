@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PhotoListComponent } from "./photo-list/photo-list.component";
-import { PhotoFormComponent } from "./photo-form/photo-form.component";
+import { DeathNoticeComponent } from "./death-notice/death-notice.component";
+import {AppComponent} from "./app.component";
 
 const routes: Routes = [
-  { path: '', component: PhotoListComponent },
-  { path: 'photos', component: PhotoListComponent },
-  { path: 'addphoto', component: PhotoFormComponent },
-  { path: '*', component: PhotoFormComponent }
+  { path: '', component: DeathNoticeComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

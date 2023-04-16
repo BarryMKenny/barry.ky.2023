@@ -8,10 +8,11 @@ import { HttpClient } from "@angular/common/http";
 })
 export class PhotoService {
 
-  private photosUrl: string;
+  private readonly photosUrl: string;
 
   constructor(private http: HttpClient) {
-    this.photosUrl = 'https://barry.ky/photos';
+    //this.photosUrl = 'https://barry.ky/photos';
+    this.photosUrl = 'http://localhost:8080/photos';
   }
 
   public findAll(): Observable<Photo[]> {
@@ -19,7 +20,6 @@ export class PhotoService {
   }
 
   public save(photo: Photo) {
-    console.log("Photo: " + photo.filename)
     return this.http.post<Photo>(this.photosUrl, photo);
   }
 }

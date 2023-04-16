@@ -1,11 +1,16 @@
 package ky.barry.barry.ky3.controller;
 
+import ky.barry.barry.ky3.utils.FileSystemUtils;
 import ky.barry.barry.ky3.domain.Photo;
-import ky.barry.barry.ky3.repository.PhotoRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @AllArgsConstructor
@@ -13,19 +18,27 @@ import java.util.List;
 @Slf4j
 public class PhotoController {
 
-    private final PhotoRepository photoRepository;
+    @Value("${filesystem.directory.pictures}")
+    private static String picturesDirectory;
+
+    private List<Photo> photoList;
 
     @GetMapping("/photos")
     public List<Photo> getPhotos() {
-        log.info("Retrieving Photos");
-        List<Photo> photos = (List<Photo>) photoRepository.findAll();
-        photos.forEach(System.out::println);
-        return photos;
+        photoList = new ArrayList<>();
+        Arrays.stream(FileSystemUtils.addPicturesToList()).forEach(file -> {
+            try {
+                photoList.add(new Photo(file.getAbsolutePath(), file.getName(), Files.readAllBytes(file.toPath())));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        return photoList;
     }
 
     @PostMapping("/photos")
     void addPhoto(@RequestBody Photo photo) {
         log.info("Saving Photo: " + photo.toString());
-        photoRepository.save(photo);
+        photoList.add(photo);
     }
 }
